@@ -158,14 +158,14 @@ class Installer:
     self.__run_command("rm ringojs_0.9-1_all.deb")
 
     #
-    # Mono - TODO - this install script doesn't work.
+    # Mono
     #
-    #self.__run_command("git clone git://github.com/mono/mono", retry=True)
-    #self.__run_command("git checkout mono-3.2.3", cwd="mono")
-    #self.__run_command("./autogen.sh --prefix=/usr/local", cwd="mono")
-    #self.__run_command("make get-monolite-latest", cwd="mono")
-    #self.__run_command("make EXTERNAL_MCS=${PWD}/mcs/class/lib/monolite/gmcs.exe", cwd="mono")
-    #self.__run_command("sudo make install", cwd="mono")
+    self.__run_command("git clone git://github.com/mono/mono", retry=True)
+    self.__run_command("git checkout mono-3.2.8-branch", cwd="mono")
+    self.__run_command("./autogen.sh --prefix=/usr/local", cwd="mono")
+    self.__run_command("make get-monolite-latest", cwd="mono")
+    self.__run_command("make EXTERNAL_MCS=${PWD}/mcs/class/lib/monolite/basic.exe", cwd="mono")
+    self.__run_command("sudo make install", cwd="mono")
 
     self.__run_command("mozroots --import --sync", retry=True)
 
@@ -190,9 +190,9 @@ class Installer:
     #
     self.__download("https://github.com/plt/racket/archive/v5.3.6.tar.gz", "racket-5.3.6.tar.gz")
     self.__run_command("tar xzf racket-5.3.6.tar.gz")
-    self.__run_command("./configure", cwd="racket/src")
-    self.__run_command("make", cwd="racket/src")
-    self.__run_command("sudo make install", cwd="racket/src")
+    self.__run_command("./configure", cwd="racket-5.3.6/src")
+    self.__run_command("make", cwd="racket-5.3.6/src")
+    self.__run_command("sudo make install", cwd="racket-5.3.6/src")
 
     #
     # Ur/Web
@@ -265,8 +265,10 @@ class Installer:
     self.__run_command("sudo make install", cwd="zeromq-4.0.3")
     self.__run_command("sudo apt-get install sqlite3 libsqlite3-dev uuid uuid-runtime uuid-dev")
     self.__run_command("sudo ldconfig -v")
-    self.__run_command("git clone git://github.com/zedshaw/mongrel2.git mongrel2", retry=True)
-    # for zmq4, we update the following file manually (not in the stable master branch yet)
+    self.__download("https://github.com/zedshaw/mongrel2/tarball/v1.8.1", "mongrel2.tar.gz")
+    self.__run_command("tar xvf mongrel2.tar.gz")
+    self.__run_command("mv zedshaw-mongrel2-aa2ecf8 mongrel2")
+    # for zmq4, we update the following file manually (not in v1.8.1)
     self.__download("https://raw.github.com/zedshaw/mongrel2/9b565eeea003783c47502c2d350b99c9684ce97c/src/zmq_compat.h")
     self.__run_command("mv -f zmq_compat.h mongrel2/src/")
     self.__run_command("make clean all && sudo make install", cwd="mongrel2")
