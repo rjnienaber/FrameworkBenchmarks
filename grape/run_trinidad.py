@@ -3,9 +3,10 @@ from helper import Command
 
 def start(args, logfile, errfile):
   helper.set_database_host(args)
+  jruby_version = helper.jruby_version(logfile)
   commands = [
-    Command("rvm jruby-1.7.8 do bundle", True),
-    Command("rvm jruby-1.7.8 do bundle exec trinidad --config config/trinidad.yml", False)
+    Command("rvm %s do bundle" % jruby_version, True),
+    Command("rvm %s do bundle exec trinidad --config config/trinidad.yml" % jruby_version, False)
   ]
 
   return helper.run(commands, logfile, errfile)
