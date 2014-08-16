@@ -1,3 +1,3 @@
 #!/bin/bash
 
-fw_depends ruby
+fw_depends java ruby
