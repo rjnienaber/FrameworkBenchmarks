@@ -9,5 +9,4 @@ rvm install jruby-1.7.8
 rvm jruby-1.7.8 do bundle install --gemfile=$TROOT/Gemfile
 
 rvm install rbx-2.2.10
-rvm rbx-2.2.10 do rvm --force gemset empty
-rvm rbx-2.2.10 do bundle install --gemfile=$TROOT/Gemfile
+rvm rbx-2.2.10 do bundle install --jobs=1 --retry=3 --gemfile=$TROOT/Gemfile
