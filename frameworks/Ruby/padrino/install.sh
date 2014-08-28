@@ -4,6 +4,8 @@ fw_depends rvm nginx java
 
 # Some gems seem to fail when installing on travis
 # clearing at the cache so it always retrieves new ones
+export LC_ALL=en_US.UTF-8 
+export LANG=en_US.UTF-8
 rvm install rbx-2.2.10
 rvm rbx-2.2.10@global do gem uninstall bundler --force -x
 rvm rbx-2.2.10@global do gem install bundler -v=1.6.2
