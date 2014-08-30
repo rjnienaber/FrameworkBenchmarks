@@ -1,0 +1,9 @@
+# A sample Gemfile
+source "https://rubygems.org"
+
+gem 'ruby-mysql', require: 'mysql', git: 'git@github.com:rubencaro/ruby-mysql.git', ref: 'bd910c3312d9c'
+gem 'reel', '0.5.0'
+gem "webmachine", git: 'git://github.com/seancribbs/webmachine-ruby.git', ref: 'b051861315c6'
+gem 'json', '1.8.1'
+gem 'rack', '1.5.2'
+gem 'slim', '2.0.3'
