@@ -15,11 +15,11 @@ class CommandHelper(object):
       self.cwd = os.environ['TROOT']
 
   def jruby_run(self, command, wait_for_exit=True):
-    command_with_env = "{0} rvm jruby-1.7.13 do bundle exec {1}".format(self._db_host(), command)
+    command_with_env = "{0} rvm jruby-1.7.8 do bundle exec {1}".format(self._db_host(), command)
     return self.run(command_with_env, wait_for_exit)
 
   def ruby_run(self, command, wait_for_exit=True):
-    command_with_env = "{0} rvm ruby-2.1.2 do bundle exec {1}".format(self._db_host(), command)
+    command_with_env = "{0} rvm ruby-2.0.0-p0 do bundle exec {1}".format(self._db_host(), command)
     return self.run(command_with_env, wait_for_exit)
 
   def rbx_run(self, command, wait_for_exit=True):
